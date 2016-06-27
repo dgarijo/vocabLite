@@ -40,10 +40,6 @@ public class MainSiteCreator {
     }
     public static void main(String[] args) throws IOException{
         String pathToRepo = "";
-//        if(args.length<2){
-//            System.out.println("Usage: java-jar vocab.jar -i input repository folder [-o outputDirectoryPath -n name of the repository -oops]");oops will activate/deactivate oops eval
-//            return;
-//        }
 //        pathToRepo = args[1];
         int argNumber = 0;
         String outputFile = null;
@@ -69,13 +65,17 @@ public class MainSiteCreator {
         }catch(Exception e){
             System.out.println("Wrong input usage. Usage: java-jar vocab.jar -i input repository folder [-o outputDirectoryPath -n name of the repository -oops]");
         }
+        if("".equals(pathToRepo)){
+            System.out.println("Usage: java-jar vocab.jar -i input repository folder [-o outputDirectoryPath -n name of the repository -oops]");//oops will activate/deactivate oops eval
+            return;
+        }
 //        //to do: add the repo name if known
         
 //        if(args.length==4 && args[2].equals("-o")){
 //            outputFile = args[3];
 //        }
         //for local tests
-        pathToRepo = "C:\\Users\\dgarijo\\Dropbox (OEG-UPM)\\NetBeansProjects\\vocabLite\\repoTest";
+//        pathToRepo = "C:\\Users\\dgarijo\\Dropbox (OEG-UPM)\\NetBeansProjects\\vocabLite\\repoTest";
         
         //end tests        
         String urlOut = "";
