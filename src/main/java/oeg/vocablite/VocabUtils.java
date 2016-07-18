@@ -249,10 +249,13 @@ public class VocabUtils {
         catch (java.lang.Exception d){
             System.err.println("error when getting the languages: " + d.getMessage());
         }
+        if(vocabulary.getUri() == null){
+            vocabulary.setUri(vocabPath.getAbsolutePath());
+        }
         //liberate resources    
         currentModel.close();
-        //LOV
-        getLOVPage(vocabulary);
+        //LOV (disabled at the moment)
+        //getLOVPage(vocabulary);
         return vocabulary;
     }
     

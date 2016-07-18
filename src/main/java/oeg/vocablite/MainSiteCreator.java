@@ -69,13 +69,9 @@ public class MainSiteCreator {
             System.out.println("Usage: java-jar vocab.jar -i input repository folder [-o outputDirectoryPath -n name of the repository -oops]");//oops will activate/deactivate oops eval
             return;
         }
-//        //to do: add the repo name if known
-        
-//        if(args.length==4 && args[2].equals("-o")){
-//            outputFile = args[3];
-//        }
+
         //for local tests
-//        pathToRepo = "C:\\Users\\dgarijo\\Dropbox (OEG-UPM)\\NetBeansProjects\\vocabLite\\repoTest";
+        pathToRepo = "C:\\Users\\dgarijo\\Dropbox\\NetBeansProjects\\vocabLite\\repoTest";
         
         //end tests        
         String urlOut = "";
@@ -94,20 +90,22 @@ public class MainSiteCreator {
         String html = TextConstants.header+TextConstants.getNavBarVocab(repoName);
         html+=TextConstants.tableHeadVocab;
         try{
-            //ArrayList<Vocabulary> vocs = processCSV(ProcessCSVFile.class.getResource("/vocab/test.csv").getPath());
             ArrayList<Vocabulary> vocs = ProcessRepository.processRepositoryFolder(pathToRepo);
-//            ArrayList<String> domains = new ArrayList();
             int i=1;
             for(Vocabulary v:vocs){
-                html+=v.getHTMLSerializationAsRow(""+i, outputFolder);
-                i++;                  
+                try{
+                    html+=v.getHTMLSerializationAsRow(""+i, outputFolder);
+                }catch(Exception e){
+                    System.err.println("Could not process vocabulary: "+e.getMessage());
+                }
+                i++;
             }
             html+=TextConstants.tableEnd+TextConstants.end;//+TextConstants.getScriptForFilteringAndEndDocument(domains);
             VocabUtils.saveDocument(catalogOutPath, html);
             Report.getInstance().saveReport(urlReportOut);
         }catch(Exception e){
             System.err.println("Could not create the site: "+e.getMessage());
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
     

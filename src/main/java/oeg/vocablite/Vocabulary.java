@@ -245,6 +245,7 @@ public class Vocabulary {
      * Method that returns an html serialization of the vocabulary.
      * Assuming that there is a table 
      * @param id id for the vocab in the table
+     * @param out
      * @return 
      */
     public String getHTMLSerializationAsRow(String id, File out){
@@ -275,9 +276,12 @@ public class Vocabulary {
             html+= "<span class=\"label label-default\">Undefined</span>";        
         }
         else{
-//            html+= "<a href=\"" + license + "\" target=\"_blank\"><span class=\"label label-success\">" + licenseLabel + "</span></a>";        
-            String licenseTitleReduced = licenseTitle.replace("Creative Commons ", "");
-        	html+= "<a href=\"" + this.license + "\" target=\"_blank\"> <span class=\"label label-success\">" + licenseTitleReduced + "</span> </a>";        
+           String licenseTitleReduced = licenseTitle.replace("Creative Commons ", "");
+           if(licenseTitleReduced.length()>20){
+               licenseTitleReduced = licenseTitleReduced.substring(0, 19);
+               licenseTitleReduced += "...";
+           }
+           html+= "<a href=\"" + this.license + "\" target=\"_blank\"> <span class=\"label label-success\">" + licenseTitleReduced + "</span> </a>";        
         }
 
         html+=("</td>\n");
@@ -302,18 +306,6 @@ public class Vocabulary {
         }
         html+="</td>\n";    
         
-        //Domains
-//        html+="<td>";
-//        String domainText=title+"--";
-//        if(domains!=null){
-//            for(String d:domains){
-//                html+="<span class=\"label label-primary\">" + d + "</span>\n";
-//                domainText = domainText +d+ "--";
-//            }
-//        }else{
-//            html+="<span class=\"label label-default\">Undefined</span>";
-//        }
-//        html+=("</td>\n");
         
         //description
         html+="<td>\n";    
@@ -342,9 +334,7 @@ public class Vocabulary {
         }
 
         html+= "</td>\n";
-
-//        html+="<input type=\"hidden\" name=\"inp"+id+"\" id=\"inp"+id+"\" value=\""+domainText+"\"/>";
-        
+   
         //finish row
         html+=("</tr>");        
         return html;
