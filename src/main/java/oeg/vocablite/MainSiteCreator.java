@@ -71,7 +71,7 @@ public class MainSiteCreator {
         }
 
         //for local tests
-        pathToRepo = "C:\\Users\\dgarijo\\Dropbox\\NetBeansProjects\\vocabLite\\repoTest";
+//        pathToRepo = "C:\\Users\\dgarijo\\Dropbox\\NetBeansProjects\\vocabLite\\R2";
         
         //end tests        
         String urlOut = "";
@@ -87,7 +87,7 @@ public class MainSiteCreator {
         MainSiteCreator.createFolderStructure(outputFolder.getAbsolutePath());
         String catalogOutPath = outputFolder.getAbsolutePath()+File.separator+TextConstants.siteName;
         String urlReportOut = outputFolder.getAbsolutePath()+File.separator+TextConstants.reportName;
-        String html = TextConstants.header+TextConstants.getNavBarVocab(repoName);
+        String html = TextConstants.getheader(repoName)+TextConstants.getNavBarVocab(repoName);
         html+=TextConstants.tableHeadVocab;
         try{
             ArrayList<Vocabulary> vocs = ProcessRepository.processRepositoryFolder(pathToRepo);

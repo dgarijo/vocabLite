@@ -222,7 +222,7 @@ public class VocabUtils {
             }
             if(vocabulary.getLicenseTitle().equals("unknown")){
                 vocabulary.setLicense(oldLicense);
-                vocabulary.setTitle(oldLicense);
+                vocabulary.setLicenseTitle(oldLicense);
             }
         }
         //look for languages used in the vocabulary

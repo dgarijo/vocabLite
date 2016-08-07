@@ -41,26 +41,24 @@ public class TextConstants {
     public static final String licensiusURIServiceLicense = "http://www.licensius.com/api/license/findlicenseinrdf?uri=";//"http://licensius.appspot.com/getLicense?content=";
     public static final String licensiusURIServiceLicenseInfo = "http://www.licensius.com/api/license/getlicenseinfo?uri=";//"http://licensius.appspot.com/getLicenseTitle?content=";
     
-    public static final int shortDescLenght = 120;
+    public static final int shortDescLenght = 140;
+    public static final int shortLicense = 30;   
     
-    public static final String header = "<!DOCTYPE html>\n" + 
+    
+    public static String getheader (String repoName){
+            return "<!DOCTYPE html>\n" + 
 			"<html lang=\"en\">\n" + 
 			"  <head>\n" + 
 			"    <meta charset=\"UTF-8\">\n" + 
-			"    <title>vocab.linkeddata.es</title>\n" + 
-			"    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" + 
-			"    <meta name=\"description\" content=\"This describes a catalog of vocabularies authored or contributed to by the members of the OEG.\">\n" + 
-			"    <meta name=\"languaje\" content=\"English\">\n" + 
-			"    <meta name=\"author\" content=\"Maria Poveda Villalon\">\n" + 
-                        "    <meta name=\"author\" content=\"Daniel Garijo\">\n" + 
-			"    \n" + 
+			"    <title>"+repoName+"</title>\n" + 
 			"    <link rel=\"stylesheet\" href=\"vocab/themes/blue/style.css\" type=\"text/css\" media=\"print, projection, screen\" />\n" +
 		    "    <script src=\"vocab/js/jquery-1.11.0.js\"></script>\n" +
-			"    <script type=\"text/javascript\" src=\"vocab/js/jquery.tablesorter.min.js\"></script>\n" +
-			"    <script type=\"text/javascript\" src=\"vocab/js/jquery.stickytableheaders.js\"></script>\n" +
-			"    <script type=\"text/javascript\" src=\"vocab/js/jquery-ui.js\"></script>\n" +
+                    //I remove the sorting bcause it adds complexity and normally there are just a few vocabularies.
+			//"    <script type=\"text/javascript\" src=\"vocab/js/jquery.tablesorter.min.js\"></script>\n" +
+			//"    <script type=\"text/javascript\" src=\"vocab/js/jquery.stickytableheaders.js\"></script>\n" +
+			//"    <script type=\"text/javascript\" src=\"vocab/js/jquery-ui.js\"></script>\n" +
 			"    <script type=\"text/javascript\" src=\"vocab/js/bootstrap.js\"></script>\n" +
-			"    <link rel=\"stylesheet\" href=\"vocab/css/jquery-ui.css\"></link>\n" +
+			//"    <link rel=\"stylesheet\" href=\"vocab/css/jquery-ui.css\"></link>\n" +
 			"    <script type=\"text/javascript\" id=\"js\">\n" +
 			"	    $(document).ready(function() \n" +
 			"		    { \n" +
@@ -93,6 +91,7 @@ public class TextConstants {
 			"\n" + 
 			"  <body>\n" + 
 			"\n"; 
+    }
 			
     public static String getNavBarVocab(String repoName){
         return "<div class=\"navbar navbar-inverse navbar-fixed-top\" role=\"navigation\">\n" + 
@@ -154,19 +153,20 @@ public class TextConstants {
                     "" +
                     "      <footer class=\"footer\">\n" +
                     "      " +
-                    "      <div class=\"row\">\n" +
+                    "     <footer class=\"footer\">\n" +
+                    "            <div class=\"row\">\n" +
                     "    	<div class=\"col-md-10\">\n" +
-                    "    		Developed by " +
-                    "	        <a href = \"http://oeg-upm.net\" target=\"_blank\">Ontology Engineering Group</a>\n" +
+                    "    		Page created with  <a href = \"https://github.com/dgarijo/vocabLite\" target=\"_blank\">VocabLite</a> (<a href=\"http://oeg-upm.net/\">Ontology Engineering Group</a>)\n" +
                     "	        <br>\n" +
                     "    	Built with <a target=\"_blank\" href=\"http://getbootstrap.com/\">Bootstrap</a>\n" +
-                    "    	Icons from <a target=\"_blank\" href=\"http://glyphicons.com/\">Glyphicons</a>\n " +			
-                    "	        <br>\n" +
-                    "	        Latest revision "+(new SimpleDateFormat("MMMM", Locale.UK).format(new Date(Calendar.getInstance().getTimeInMillis())))+", "+new GregorianCalendar().get(Calendar.YEAR)+"\n" +          
-                    "        </div>\n" +			
-                   // "    	<div class=\"col-md-2\">\n" +
-                   // "    		<a href=\"http://www.oeg-upm.net/\" target=\"_blank\"><img src=\"vocab/logo.gif\" alt=\"OEG logo\" class=\"img-rounded\" class=\"img-responsive\" /></a>\n" +
-                   // "    	</div>\n" +
+                    " 	        <br>\n" +
+                   // "	        Latest revision August, 2016\n" +
+            "	        Latest revision "+(new SimpleDateFormat("MMMM", Locale.UK).format(new Date(Calendar.getInstance().getTimeInMillis())))+", "+new GregorianCalendar().get(Calendar.YEAR)+"\n" +
+                    "        </div>\n" +
+                    "		<div class=\"col-md-2\">\n" +
+                    "			<a href=\"https://github.com/dgarijo/vocabLite\"><img width=\"140px\"src=\"vocab/logoLite.png\"></img></a>\n" +
+                    "		</div>\n" +
+                    "      </footer>"+
                     "      </div>\n" +
                     "" +
                     "      </footer>\n" +
@@ -177,25 +177,15 @@ public class TextConstants {
     public static final String tableHeadVocab= 
                     
                     "<div class=\"row\"> \n"+    
-                    "<div class=\"ui-widget\">\n"+
-//                    "<div class=\"col-md-3\" > \n"+
-//                    "<p class=\"text-right\"><label for=\"tags\">Filter by title or domain: </label></p>\n"+
-//                    "</div>\n"+
-//                    "<div class=\"col-md-8\" > \n"+
-//                    "<input class=\"form-control\" id=\"tags\" >\n"+
-//                    "<button id=\"remButt\" class=\"label label-default\" onclick=\"showRows();\" style=\"font-size: 75%; font-weight: bold; line-height: 1; display: none;\"><span class=\"submit glyphicon glyphicon-remove\"></span>  Remove filter</button>\n"+
-//                    "</div>\n"+
-                    "</div>\n"+
                     "</div>\n"+
                     "<br>\n"+
                     "<table id=\"tablesorter-demo\" class=\"tablesorter table table-hover table-responsive\">\n"+
                     "<thead>\n"+
                     "<tr>\n"+
                     "<th class=\"col-md-2\">Ontology</th>\n"+
-                    "<th class=\"col-md-2\">Serialization</th>\n"+
-                    "<th class=\"col-md-1\">License</th>\n"+
+                    "<th class=\"col-md-1\">Serialization</th>\n"+
+                    "<th class=\"col-md-2\">License</th>\n"+
                     "<th class=\"col-md-1\">Language</th>\n"+
-                    //"<th class=\"col-md-2\">Domain</th>\n"+
                     "<th class=\"col-md-6\">Description</th>\n"+
                     "</tr>\n"+
                     "</thead>\n"+
@@ -259,13 +249,14 @@ public class TextConstants {
 		"butt = document.getElementById('remButt').style.display='none';\n"+
 		"}\n"+
 		"</script>"+
-                "<script>\n" +
-                "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n" +
-                "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n" +
-                "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n" +
-                "ga('create', 'UA-48904250-1', 'linkeddata.es');\n" +
-                "ga('send', 'pageview');\n" +
-                "</script>\n" +
+               //the following is commented because you require your own page.
+               // "<script>\n" +
+               // "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n" +
+               // "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n" +
+               // "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n" +
+               // "ga('create', 'UA-48904250-1', 'linkeddata.es');\n" +
+               // "ga('send', 'pageview');\n" +
+               // "</script>\n" +
                 "" +
                 "  </body>\n" +
                 "</html>\n";

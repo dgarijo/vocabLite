@@ -18,6 +18,7 @@ package oeg.vocablite;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -165,7 +166,7 @@ public class Report {
      * @return 
      */
     public String htmlSerialization(){
-        String html = TextConstants.header+TextConstants.navBarReport + TextConstants.tableHeadReport;
+        String html = TextConstants.getheader("Vocabulary report")+TextConstants.navBarReport + TextConstants.tableHeadReport;
         //first the vocabs that failed
         for(String err:vocabsWithErrors){
             html+= addEntryRowHTML(err, "error", vocabProblems.get(err));
@@ -187,9 +188,15 @@ public class Report {
         return html;
     }
     
-    private String addEntryRowHTML(String vocab, String status, ArrayList<String> errors){
+    private String addEntryRowHTML(String v, String status, ArrayList<String> errors){
+        String vocab = v;
+        if(!vocab.startsWith("http")){
+            try{
+                vocab = vocab.substring(vocab.lastIndexOf(File.separator)+1, vocab.length());
+            }catch(Exception e){}
+        }
         String rowHtml = "  <tr>\n" +
-        "<td><a href = \""+vocab+"\" target=\"_blank\">"+vocab+"</a></td>\n" +
+        "<td><a href = \""+v+"\" target=\"_blank\">"+vocab+"</a></td>\n" +
         "<td>\n";
         if(errors == null || errors.isEmpty()){
             rowHtml+="<span class=\"label label-success\">Sucess</span>\n</td>\n" +

@@ -254,6 +254,9 @@ public class Vocabulary {
         String ontURI = this.uri;
         String ontTitle = this.getTitle();
         String localURL = ontURI.replace("https://","").replace("http://","").replace("/", "").replace("#", "").trim();
+        if(ontTitle == null || ontTitle.equals("")){
+            ontTitle = "Undefined";
+        }
         html +=("<td><a href = \""+ ontURI + "\" target=\"_blank\">" + ontTitle + "</a> </td>");
 //code for including oops evaluations (deactivated at the moment)
 //<a href = \"ontologies/" + localURL + ".html\" target=\"_blank\"><span class=\"glyphicon glyphicon-info-sign\" data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"More information about this vocabulary\"/></a></td>\n");
@@ -277,8 +280,8 @@ public class Vocabulary {
         }
         else{
            String licenseTitleReduced = licenseTitle.replace("Creative Commons ", "");
-           if(licenseTitleReduced.length()>20){
-               licenseTitleReduced = licenseTitleReduced.substring(0, 19);
+           if(licenseTitleReduced.length()>TextConstants.shortLicense){
+               licenseTitleReduced = licenseTitleReduced.substring(0, TextConstants.shortLicense-1);
                licenseTitleReduced += "...";
            }
            html+= "<a href=\"" + this.license + "\" target=\"_blank\"> <span class=\"label label-success\">" + licenseTitleReduced + "</span> </a>";        
